@@ -1,4 +1,3 @@
-
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 export const tweetsData = [   
     {
@@ -12,6 +11,7 @@ export const tweetsData = [
         isLiked: false,
         isRetweeted: false,
         uuid: uuidv4(),
+        canDelete: false,
     },    
     {
         handle: `@Elon ✅`,
@@ -34,6 +34,7 @@ export const tweetsData = [
         isLiked: false,
         isRetweeted: false,
         uuid: uuidv4(),
+        canDelete: false,
     },
         {
         handle: `@NoobCoder12`,
@@ -56,5 +57,6 @@ export const tweetsData = [
         isLiked: false,
         isRetweeted: false,
         uuid: uuidv4(),
+        canDelete: false,
     },     
 ]

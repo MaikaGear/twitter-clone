@@ -1,5 +1,9 @@
 import { tweetsData } from './data.js'
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
+const tweetDetails = document.querySelector('.tweet-details')
+const myData = JSON.parse(localStorage.getItem('myTweet'))
+
+// console.log(myData)
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.like){
@@ -55,10 +59,9 @@ function handleReplyClick(replyId){
 
 function handleTweetBtnClick(){
     const tweetInput = document.getElementById('tweet-input')
-
     if(tweetInput.value){
         tweetsData.unshift({
-            handle: `@Scrimba`,
+            handle: `@MaikaTheDragon`,
             profilePic: `images/maika.jpg`,
             likes: 0,
             retweets: 0,
@@ -66,17 +69,27 @@ function handleTweetBtnClick(){
             replies: [],
             isLiked: false,
             isRetweeted: false,
-            uuid: uuidv4()
+            uuid: uuidv4(),
+            canDelete: true,
         })
-    render()
+        localStorage.setItem('myTweet', JSON.stringify(tweetInput.value));
     tweetInput.value = ''
     }
-
+    render()
 }
+
+
+
 
 function handleDeleteClick(tweetId){
     let tweetItem = document.querySelector('.tweet')
-    tweetItem.remove()
+    const targetDelObj = tweetsData.filter(function(tweet){
+        return tweet.uuid === tweetId
+    })[0]
+    
+    if(targetDelObj.canDelete){
+        tweetItem.remove()
+    }
 }
 
 function getFeedHtml(){
@@ -94,6 +107,10 @@ function getFeedHtml(){
         
         if (tweet.isRetweeted){
             retweetIconClass = 'retweeted'
+        }
+        let deleteIconClass = ''
+        if(!tweet.canDelete){
+            deleteIconClass = 'deleted'
         }
         
         let repliesHtml = ''
@@ -141,7 +158,7 @@ function getFeedHtml(){
                     ></i>
                     ${tweet.retweets}
                 </span>
-                <span class="tweet-detail">
+                <span class="tweet-detail delete-btn hidden" id="delete-${tweet.uuid}">
                 <i class="fa-solid fa-trash-can" data-delete=${tweet.uuid}></i>
                 </span>
             </div>   
@@ -152,12 +169,20 @@ function getFeedHtml(){
     </div>   
 </div>
 `
+
+
+
    })
    return feedHtml 
 }
 
 function render(){
     document.getElementById('feed').innerHTML = getFeedHtml()
+    tweetsData.forEach(function(tweet){
+        if(tweet.canDelete){
+            document.querySelector('.delete-btn').classList.remove('hidden')
+        }
+    })
 }
 
 render()

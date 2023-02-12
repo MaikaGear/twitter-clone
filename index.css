@@ -29,6 +29,10 @@ i{
   color: limegreen;
 }
 
+.deleted{
+    display: none;
+}
+
 /* layout */
 
 main, header{
