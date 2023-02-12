@@ -1,12 +1,11 @@
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 export const tweetsData = [   
     {
-        handle: `@TrollBot66756542 💎`,
-        profilePic: `images/troll.jpg`,
-        likes: 27,
-        retweets: 10,
-        tweetText: `Buy Bitcoin, ETH Make 💰💰💰 low low prices. 
-            Guaranteed return on investment. HMU DMs open!!`,
+        handle: `@iLoveCookies🍪`,
+        profilePic: `images/cookies.jpg`,
+        likes: 14,
+        retweets: 1,
+        tweetText: `I sell custom made cookies 💰💰 DM me if you wanna buy I offer discounted prices`,
         replies: [],
         isLiked: false,
         isRetweeted: false,
@@ -14,21 +13,21 @@ export const tweetsData = [
         canDelete: false,
     },    
     {
-        handle: `@Elon ✅`,
-        profilePic: `images/musk.png`,
-        likes: 6500,
-        retweets: 234,
-        tweetText: `I need volunteers for a one-way mission to Mars 🪐. No experience necessary🚀`,
+        handle: `@Monkey D. Luffy`,
+        profilePic: `images/luffy.jpg`,
+        likes: 988,
+        retweets: 49,
+        tweetText: `I need some crew members, I'm thinking of becoming a pirate! Who's interested?`,
         replies: [
                   {
-                handle: `@TomCruise ✅`,
-                profilePic: `images/tcruise.png`,
-                tweetText: `Yes! Sign me up! 😎🛩`,
+                handle: `@Zoro`,
+                profilePic: `images/zoro.jfif`,
+                tweetText: `Sign me up`,
             },
                   {
-                handle: `@ChuckNorris ✅`,
-                profilePic: `images/chucknorris.jpeg`,
-                tweetText: `I went last year😴`,
+                handle: `@Cowardly Usopp`,
+                profilePic: `images/usopp.jpg`,
+                tweetText: `Sounds scary, can I join?`,
             },
         ],
         isLiked: false,
@@ -37,22 +36,17 @@ export const tweetsData = [
         canDelete: false,
     },
         {
-        handle: `@NoobCoder12`,
-        profilePic: `images/flower.png`,
-        likes: 10,
-        retweets: 3,
-        tweetText: `Are you a coder if you only know HTML?`,
+        handle: `@Clownfish112233`,
+        profilePic: `images/clownfish.jpg`,
+        likes: 35,
+        retweets: 2,
+        tweetText: `Has anybody seen my son his names nemo lolz`,
         replies: [
             {
-                handle: `@StackOverflower ☣️`,
-                profilePic: `images/overflow.png`,
-                tweetText: `No. Obviosuly not. Go get a job in McDonald's.`,
-            },
-            {
-                handle: `@YummyCoder64`,
-                profilePic: `images/love.png`,
-                tweetText: `You are wonderful just as you are! ❤️`,
-            },
+                handle: `@Royal Blue Tang`,
+                profilePic: `images/bluetang.webp`,
+                tweetText: `I think so. Wait how'd I type this, I'm a fish. Am I a fish? What's a fish?`,
+            }
         ],
         isLiked: false,
         isRetweeted: false,
