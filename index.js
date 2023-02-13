@@ -1,19 +1,8 @@
 import { tweetsData } from './data.js'
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 const tweetDetails = document.querySelector('.tweet-details')
-const myData = JSON.parse(localStorage.getItem('myTweet'))
-const newInput = document.createElement('textarea')
-const newBtn = document.createElement('button')
+window.onload = render
 
-newBtn.setAttribute('id','reply-btn')
-newBtn.setAttribute('class', 'reply-btn')
-newInput.setAttribute('class', 'reply-textarea')
-newInput.setAttribute('placeholder','Type a reply...')
-newInput.setAttribute('id','reply-input')
-newBtn.innerText = 'Post reply'
-const replyInput = document.getElementById('reply-input')
-
-// console.log(myData)
 
 document.addEventListener('click', function(e){
     if(e.target.dataset.like){
@@ -30,9 +19,6 @@ document.addEventListener('click', function(e){
     }
     else if(e.target.dataset.delete){
         handleDeleteClick(e.target.dataset.delete)
-    }
-    else if(e.target.id === 'replyBtn'){
-        handleReplyBtnClick()
     }
 })
 
@@ -68,16 +54,6 @@ function handleRetweetClick(tweetId){
 }
 
 
-function handleReplyClick(replyId){
-    
-    const repliesSection = document.getElementById(`replies-${replyId}`)
-    repliesSection.classList.toggle('hidden')
-
-    if(!repliesSection.contains(newInput)){
-        repliesSection.appendChild(newInput)
-        repliesSection.appendChild(newBtn)
-    }
-}
 
 function handleTweetBtnClick(){
     const tweetInput = document.getElementById('tweet-input')
@@ -92,37 +68,17 @@ function handleTweetBtnClick(){
             isLiked: false,
             isRetweeted: false,
             uuid: uuidv4(),
-            canDelete: true,
         })
-        localStorage.setItem('myTweet', JSON.stringify(tweetInput.value));
-    tweetInput.value = ''
+        tweetInput.value = ''
     }
     render()
-}
-
-
-
-
-function handleDeleteClick(tweetId){
-    let tweetItem = document.querySelector('.tweet')
-    const targetDelObj = tweetsData.filter(function(tweet){
-        return tweet.uuid === tweetId
-    })[0]
-    
-    if(targetDelObj.canDelete){
-        tweetItem.remove()
-    }
-}
-
-function handleReplyBtnClick(replyId){
-    console.log('click')
 }
 
 function getFeedHtml(){
     let feedHtml = ``
     
     tweetsData.forEach(function(tweet){
-        
+
         let likeIconClass = ''
         
         if (tweet.isLiked){
@@ -184,13 +140,10 @@ function getFeedHtml(){
                     ></i>
                     ${tweet.retweets}
                 </span>
-                <span class="tweet-detail delete-btn hidden" id="delete-${tweet.uuid}">
-                <i class="fa-solid fa-trash-can" data-delete=${tweet.uuid}></i>
-                </span>
             </div>   
         </div>            
     </div>
-    <div class="hidden" id="replies-${tweet.uuid}">
+    <div class="hidden replies-container" id="replies-${tweet.uuid}">
         ${repliesHtml}
     </div>   
 </div>
@@ -204,12 +157,6 @@ function getFeedHtml(){
 
 function render(){
     document.getElementById('feed').innerHTML = getFeedHtml()
-    tweetsData.forEach(function(tweet){
-        if(tweet.canDelete){
-            document.querySelector('.delete-btn').classList.remove('hidden')
-        }
-    })
 }
 
-render()
 
